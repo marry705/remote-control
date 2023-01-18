@@ -1,6 +1,6 @@
-import { PRINT_SCREEN_COMMANDS } from './constants';
 import { Commands } from './types';
 import {
+    PRINT_SCREEN_COMMANDS,
     DRAWING_COMMANDS,
     MOUSE_COMMANDS,
     DIRECTION,
