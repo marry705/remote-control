@@ -7,7 +7,8 @@ import {
     getMousePosition,
     moveMouse,
     drawCircle,
-    drawRectangle
+    drawRectangle,
+    printScreen
 } from '../handlers';
 
 export const actionsFromCommand: Record<Commands, Function> = {
@@ -19,5 +20,5 @@ export const actionsFromCommand: Record<Commands, Function> = {
     [DRAWING_COMMANDS.DRAW_CIRCLE]: drawCircle,
     [DRAWING_COMMANDS.DRAW_SQUARE]: drawRectangle,
     [DRAWING_COMMANDS.DRAW_RECTANGLE]: drawRectangle,
-    [PRINT_SCREEN_COMMANDS.PRINT_SCREEN]: () => console.log('screen'),
+    [PRINT_SCREEN_COMMANDS.PRINT_SCREEN]: printScreen,
 };

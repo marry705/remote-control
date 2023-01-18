@@ -1,14 +1,16 @@
-import { mouse, Button, Point, straightTo } from '@nut-tree/nut-js';
+import { mouse, Button, Point, straightTo, screen } from '@nut-tree/nut-js';
 import internal from 'stream';
 import { DRAWING_COMMANDS, MOUSE_SPEED } from './constants';
+import { getScreenParam } from './helpers';
 
 const CIRCLE_STEP = 0.01;
 
 export const drawCircle = async (_: internal.Duplex, coordinates: string[]): Promise<DRAWING_COMMANDS> => {
     const [ radius ] = coordinates;
+	const { height, width } = await getScreenParam();
 
-	if (!radius) {
-        throw new Error('There is no such command');
+	if (!radius || height <= parseInt(radius) || width <= parseInt(radius)) {
+        throw new Error('There is no correct radius');
     }
 
 	const { x: circleCenterX, y: circleCenterY } = await mouse.getPosition();
