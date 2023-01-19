@@ -1,10 +1,9 @@
 import { mouse, down, up, left, right } from '@nut-tree/nut-js';
-import internal from 'stream';
 import { DIRECTION, MOUSE_COMMANDS } from './constants';
 import { MoveMouseAction } from './types';
 
 export const moveMouse = (direction?: DIRECTION): MoveMouseAction => {
-    return async (_: internal.Duplex, coordinates: string[]): Promise<MOUSE_COMMANDS> => {
+    return async (coordinates: string[]): Promise<MOUSE_COMMANDS> => {
         const [translation] = coordinates;
 
         if (!parseInt(translation)) {

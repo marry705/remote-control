@@ -37,7 +37,7 @@ wss.on('connection', (ws: WebSocket) => {
                 throw new Error('There is no such command');
             }
 
-            const results = await actionsFromCommand[(command as Commands)](duplex, coordinates);
+            const results = await actionsFromCommand[(command as Commands)](coordinates);
     
             duplex.write(results);
         } catch (error) {

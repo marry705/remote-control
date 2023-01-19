@@ -1,11 +1,10 @@
 import { mouse, Button, Point, straightTo } from '@nut-tree/nut-js';
-import internal from 'stream';
 import { DRAWING_COMMANDS, MOUSE_SPEED } from './constants';
 import { getScreenParam } from './helpers';
 
 const CIRCLE_STEP = 0.001;
 
-export const drawCircle = async (_: internal.Duplex, coordinates: string[]): Promise<DRAWING_COMMANDS> => {
+export const drawCircle = async (coordinates: string[]): Promise<DRAWING_COMMANDS> => {
     const [ radius ] = coordinates;
 	const { height: screenHeight, width: screenWidth } = await getScreenParam();
 	const { x: currentX, y: currentY } = await mouse.getPosition();
