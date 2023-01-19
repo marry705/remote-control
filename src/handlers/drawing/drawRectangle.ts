@@ -15,9 +15,8 @@ export const drawRectangle = async (coordinates: string[]): Promise<DRAWING_COMM
     const widthNumber = parseInt(width);
     const heightNumber = !height ? widthNumber : parseInt(height);
 
-    const isRectangleCanBeDrawn = width
-        && currentX + widthNumber < screenWidth
-        && currentY + heightNumber < screenHeight;
+    const isRectangleCanBeDrawn = (currentX + widthNumber) < screenWidth
+        && (currentY + heightNumber) < screenHeight;
 
     if (!isRectangleCanBeDrawn) {
         throw new NotCorrectParamError();

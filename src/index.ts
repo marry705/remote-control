@@ -28,7 +28,10 @@ wss.on('connection', (ws: WebSocket) => {
         process.exit(0);
     });
 
-    const duplex = createWebSocketStream(ws, { decodeStrings: false, encoding: 'utf8' });
+    const duplex = createWebSocketStream(ws, {
+        decodeStrings: false,
+        encoding: 'utf8'
+    });
 
     duplex.on('data', async (fullCommand: string) => {
         try {
