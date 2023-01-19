@@ -1,4 +1,5 @@
 import { mouse, down, up, left, right } from '@nut-tree/nut-js';
+import { NotCorrectParamError, NotFoundCommandError } from '../../errors';
 import { DIRECTION, MOUSE_COMMANDS } from './constants';
 import { MoveMouseAction } from './types';
 
@@ -7,7 +8,7 @@ export const moveMouse = (direction?: DIRECTION): MoveMouseAction => {
         const [translation] = coordinates;
 
         if (!parseInt(translation)) {
-            throw new Error('There is no such command');
+            throw new NotCorrectParamError();
         }
 
         switch (direction) {
@@ -32,7 +33,7 @@ export const moveMouse = (direction?: DIRECTION): MoveMouseAction => {
                 return MOUSE_COMMANDS.MOUSE_RIGHT;
             }
             default:
-                throw new Error('There is no such command');
+                throw new NotFoundCommandError();
         }
     }
 }
