@@ -5,17 +5,22 @@ import { getScreenParam, upAndDownMouse } from './helpers';
 
 export const drawRectangle = async (_: internal.Duplex, coordinates: string[]): Promise<DRAWING_COMMANDS> => {
     const [ width, height ] = coordinates;
-    const { height: heightScreen, width: widthScreen } = await getScreenParam();
+    const { height: screenHeight, width: screenWidth } = await getScreenParam();
+    const { x: currentX, y: currentY } = await mouse.getPosition();
 
-    if (!width || heightScreen <= parseInt(width) || widthScreen <= parseInt(width)) {
+    if (!width) {
         throw new Error('There is no correct width');
     }
 
     const widthNumber = parseInt(width);
     const heightNumber = !height ? widthNumber : parseInt(height);
 
-    if (heightScreen <= heightNumber || widthScreen <= heightNumber) {
-        throw new Error('There is no correct height');
+    const isRectangleCanBeDrawn = width
+        && currentX + widthNumber < screenWidth
+        && currentY + heightNumber < screenHeight;
+
+    if (!isRectangleCanBeDrawn) {
+        throw new Error('There is no correct figure params');
     }
         
     mouse.config.mouseSpeed = MOUSE_SPEED;

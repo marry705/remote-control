@@ -17,11 +17,11 @@ wss.on('connection', (ws: WebSocket) => {
     console.log(` 🚀 Connection with ${env.WSS_PORT} port`);
 
     ws.on('close', () => {
-        console.log(`\n Goodbye from ws on ${env.WSS_PORT} ✋🏻 `);
+        console.log(`Goodbye from ws on ${env.WSS_PORT} ✋🏻`);
     });
 
     process.on('SIGINT', () => {
-        console.log('\n Goodbye ✋🏻 ');
+        console.log('\n Goodbye ✋🏻');
     
         wss.close();
         process.exit(0);
