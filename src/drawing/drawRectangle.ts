@@ -1,9 +1,9 @@
 import { Button, down, left, mouse, right, up } from '@nut-tree/nut-js';
-import { NotCorrectParamError } from '../../errors';
-import { DRAWING_COMMANDS, MOUSE_SPEED } from './constants';
+import { NotCorrectParamError } from '../errors';
+import { DRAWING_COMMANDS_NAME, MOUSE_SPEED } from './constants';
 import { getScreenParam, upAndDownMouse } from './helpers';
 
-export const drawRectangle = async (coordinates: string[]): Promise<DRAWING_COMMANDS> => {
+export const drawRectangle = async (coordinates: string[]): Promise<DRAWING_COMMANDS_NAME> => {
     const [ width, height ] = coordinates;
     const { height: screenHeight, width: screenWidth } = await getScreenParam();
     const { x: currentX, y: currentY } = await mouse.getPosition();
@@ -42,5 +42,7 @@ export const drawRectangle = async (coordinates: string[]): Promise<DRAWING_COMM
 
     await mouse.releaseButton(Button.LEFT);
 
-    return !height ? DRAWING_COMMANDS.DRAW_SQUARE : DRAWING_COMMANDS.DRAW_RECTANGLE;
+    return !height ?
+        DRAWING_COMMANDS_NAME.DRAW_SQUARE : 
+        DRAWING_COMMANDS_NAME.DRAW_RECTANGLE;
 }
