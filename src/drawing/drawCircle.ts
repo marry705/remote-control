@@ -1,5 +1,5 @@
 import { mouse, Button, Point, straightTo } from '@nut-tree/nut-js';
-import { NotCorrectParamError } from '../errors';
+import { NoCorrectParamError } from '../errors';
 import { DRAWING_COMMANDS_NAME, MOUSE_SPEED } from './constants';
 import { getScreenParam } from './helpers';
 
@@ -16,7 +16,7 @@ export const drawCircle = async (coordinates: string[]): Promise<DRAWING_COMMAND
 		(currentX - parseInt(radius)) > 0 && (currentY - parseInt(radius)) > 0;
 
 	if (!isCircleCanBeDrawn) {
-		throw new NotCorrectParamError();
+		throw new NoCorrectParamError();
 	}
 
 	mouse.config.mouseSpeed = MOUSE_SPEED;

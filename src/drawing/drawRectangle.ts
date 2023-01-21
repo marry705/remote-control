@@ -1,5 +1,5 @@
 import { Button, down, left, mouse, right, up } from '@nut-tree/nut-js';
-import { NotCorrectParamError } from '../errors';
+import { NoCorrectParamError } from '../errors';
 import { DRAWING_COMMANDS_NAME, MOUSE_SPEED } from './constants';
 import { getScreenParam, upAndDownMouse } from './helpers';
 
@@ -9,7 +9,7 @@ export const drawRectangle = async (coordinates: string[]): Promise<DRAWING_COMM
     const { x: currentX, y: currentY } = await mouse.getPosition();
 
     if (!width) {
-        throw new NotCorrectParamError();
+        throw new NoCorrectParamError();
     }
 
     const widthNumber = parseInt(width);
@@ -19,7 +19,7 @@ export const drawRectangle = async (coordinates: string[]): Promise<DRAWING_COMM
         && (currentY + heightNumber) < screenHeight;
 
     if (!isRectangleCanBeDrawn) {
-        throw new NotCorrectParamError();
+        throw new NoCorrectParamError();
     }
         
     mouse.config.mouseSpeed = MOUSE_SPEED;

@@ -1,6 +1,6 @@
-export class NotFoundCommandError extends Error {
+export class NoCorrectParamError extends Error {
     constructor(message = 'There is no correct commands params') {
         super(message);
-        this.name = 'NotFoundCommandError';
+        this.name = 'NoCorrectParamError';
     }
 }

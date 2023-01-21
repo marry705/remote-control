@@ -1,3 +1,3 @@
-export { NotFoundCommandError } from './notFoundCommand';
+export { NoCommandError } from './noCommandError';
 
-export { NotCorrectParamError } from './notCorrectParam';
+export { NoCorrectParamError } from './noCorrectParamError';

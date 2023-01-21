@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import { env } from 'process';
 import { httpServer } from './http_server';
 import { actionsFromCommand, Commands } from './commands';
-import { NotFoundCommandError } from './errors';
+import { NoCommandError } from './errors';
 
 dotenv.config();
 
@@ -38,7 +38,7 @@ wss.on('connection', (ws: WebSocket) => {
             const [command, ...coordinates] = fullCommand.toString().split(' ');
 
             if (typeof actionsFromCommand[(command as Commands)] !== 'function') {
-                throw new NotFoundCommandError();
+                throw new NoCommandError();
             }
 
             const results = await actionsFromCommand[(command as Commands)](coordinates);
