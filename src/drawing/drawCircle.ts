@@ -18,20 +18,20 @@ export const drawCircle = async (coordinates: string[]): Promise<DRAWING_COMMAND
 	if (!isCircleCanBeDrawn) {
 		throw new NotCorrectParamError();
 	}
-	
+
 	mouse.config.mouseSpeed = MOUSE_SPEED;
 
 	const centerX = currentX + parseInt(radius);
 	const centerY = currentY;
-	
+
 	await mouse.pressButton(Button.LEFT);
-	
+
 	for (let i = 0; i <= 2 * Math.PI; i += CIRCLE_STEP) {
 		const moveX = centerX - parseInt(radius) * Math.cos(i);
 		const moveY = centerY - parseInt(radius) * Math.sin(i);
 		await mouse.move(straightTo(new Point(moveX, moveY)));
 	}
-	
+
 	await mouse.releaseButton(Button.LEFT);
 	
 	return DRAWING_COMMANDS_NAME.DRAW_CIRCLE;
