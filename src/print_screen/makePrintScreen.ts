@@ -22,8 +22,7 @@ export const makePrintScreen = async (): Promise<string> => {
         width: SCREENSHOT_WIDTH,
         height: SCREENSHOT_HEIGHT}
     );
-    const imageBuffer = await image.getBufferAsync(Jimp.MIME_PNG);
-    const imageBufferBase64 = imageBuffer.toString('base64');
+    const imageBase64 = (await image.getBase64Async(Jimp.MIME_PNG)).slice(22);
     
-    return `${PRINT_SCREEN_COMMANDS_NAME.PRINT_SCREEN} ${imageBufferBase64}`;
+    return `${PRINT_SCREEN_COMMANDS_NAME.PRINT_SCREEN} ${imageBase64}`;
 };

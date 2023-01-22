@@ -30,7 +30,7 @@ wss.on('connection', (ws: WebSocket) => {
 
     const duplex = createWebSocketStream(ws, {
         decodeStrings: false,
-        encoding: 'utf8'
+        defaultEncoding: 'utf8'
     });
 
     duplex.on('data', async (fullCommand: string) => {
