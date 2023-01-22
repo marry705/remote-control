@@ -8,12 +8,15 @@ const SCREENSHOT_HEIGHT = 200;
 export const makePrintScreen = async (): Promise<string> => {
     const { x: currentPosX, y: currentPosY } = await mouse.getPosition();
     const screenshotRegion = new Region(
-        Math.max(0, currentPosX - SCREENSHOT_WIDTH),
-        Math.max(0, currentPosY - SCREENSHOT_HEIGHT),
+        Math.max(0, currentPosX - SCREENSHOT_WIDTH / 2),
+        Math.max(0, currentPosY - SCREENSHOT_HEIGHT / 2),
         SCREENSHOT_WIDTH,
         SCREENSHOT_HEIGHT
     );
-    const screenshot = await (await screen.grabRegion(screenshotRegion)).toBGR();
+
+    await screen.highlight(screenshotRegion);
+
+    const screenshot = await (await screen.grabRegion(screenshotRegion)).toRGB();
     const image = new Jimp({
         data: screenshot.data,
         width: SCREENSHOT_WIDTH,
