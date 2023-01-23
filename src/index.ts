@@ -37,12 +37,16 @@ wss.on('connection', (ws: WebSocket) => {
         try {
             const [command, ...coordinates] = fullCommand.toString().split(' ');
 
+            console.log(`Received command: ${command}`);
+
             if (typeof actionsFromCommand[(command as Commands)] !== 'function') {
                 throw new NoCommandError();
             }
 
             const results = await actionsFromCommand[(command as Commands)](coordinates);
-    
+            
+            console.log(`Command result: ${results}`);
+
             duplex.write(results);
         } catch (error) {
             console.error((error as Error)?.message);

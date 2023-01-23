@@ -4,5 +4,5 @@ import { MOUSE_COMMANDS_NAME } from './constants';
 export const getMousePosition = async (): Promise<string> => {
     const { x, y } = await mouse.getPosition();
 
-    return `${MOUSE_COMMANDS_NAME.MOUSE_POSITION} ${x}px,${y}px`;
+    return `${MOUSE_COMMANDS_NAME.MOUSE_POSITION} ${x},${y}`;
 }
