@@ -21,18 +21,6 @@ wss.on('connection', (ws: WebSocket) => {
         console.log(`Goodbye from ws on ${env.WSS_PORT} ✋🏻`);
     });
 
-    process.on('SIGINT', () => {
-        console.log('\n Goodbye ✋🏻');
-
-        wss.clients.forEach((client) => {
-            client.close();
-        });
-    
-        wss.close();
-        httpServer.close();
-        process.exit(0);
-    });
-
     const duplex = createWebSocketStream(ws, {
         decodeStrings: false,
         defaultEncoding: 'utf8'
@@ -57,4 +45,16 @@ wss.on('connection', (ws: WebSocket) => {
             console.error((error as Error)?.message);
         }
     });
+});
+
+process.on('SIGINT', () => {
+    console.log('\n Goodbye ✋🏻');
+
+    wss.clients.forEach((client) => {
+        client.close();
+    });
+
+    wss.close();
+    httpServer.close();
+    process.exit(0);
 });
