@@ -3,23 +3,18 @@ import { NoCorrectParamError } from '../errors';
 import { DRAWING_COMMANDS_NAME, MOUSE_SPEED } from './constants';
 import { getScreenParam, upAndDownMouse } from './helpers';
 
-export const drawRectangle = async (coordinates: string[]): Promise<DRAWING_COMMANDS_NAME> => {
-    const [ width, height ] = coordinates;
+export const drawSquare = async (coordinates: string[]): Promise<DRAWING_COMMANDS_NAME> => {
+    const [ width ] = coordinates;
     const { height: screenHeight, width: screenWidth } = await getScreenParam();
     const { x: currentX, y: currentY } = await mouse.getPosition();
 
-    if (!width) {
-        throw new NoCorrectParamError();
-    }
-
     const widthNumber = parseInt(width);
-    const heightNumber = parseInt(height);
 
-    const isRectangleCanBeDrawn = width && heightNumber
+    const isSquareCanBeDrawn = width
         && (currentX + widthNumber) < screenWidth
-        && (currentY + heightNumber) < screenHeight;
+        && (currentY + widthNumber) < screenHeight;
 
-    if (!isRectangleCanBeDrawn) {
+    if (!isSquareCanBeDrawn) {
         throw new NoCorrectParamError();
     }
 
@@ -27,7 +22,7 @@ export const drawRectangle = async (coordinates: string[]): Promise<DRAWING_COMM
 
     await mouse.pressButton(Button.LEFT);
 
-    await mouse.move(down(heightNumber));
+    await mouse.move(down(widthNumber));
 
     await upAndDownMouse();
 
@@ -35,7 +30,7 @@ export const drawRectangle = async (coordinates: string[]): Promise<DRAWING_COMM
 
     await upAndDownMouse();
 
-    await mouse.move(up(heightNumber));
+    await mouse.move(up(widthNumber));
 
     await upAndDownMouse();
 
@@ -43,5 +38,5 @@ export const drawRectangle = async (coordinates: string[]): Promise<DRAWING_COMM
 
     await mouse.releaseButton(Button.LEFT);
 
-    return DRAWING_COMMANDS_NAME.DRAW_RECTANGLE;
+    return DRAWING_COMMANDS_NAME.DRAW_SQUARE;
 }

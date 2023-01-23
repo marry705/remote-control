@@ -29,6 +29,7 @@ export const drawCircle = async (coordinates: string[]): Promise<DRAWING_COMMAND
 	for (let i = 0; i <= 2 * Math.PI; i += CIRCLE_STEP) {
 		const moveX = centerX - parseInt(radius) * Math.cos(i);
 		const moveY = centerY - parseInt(radius) * Math.sin(i);
+
 		await mouse.move(straightTo(new Point(moveX, moveY)));
 	}
 

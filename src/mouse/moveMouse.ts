@@ -1,9 +1,9 @@
 import { mouse, down, up, left, right } from '@nut-tree/nut-js';
 import { NoCorrectParamError, NoCommandError } from '../errors';
 import { DIRECTION, MOUSE_COMMANDS_NAME } from './constants';
-import { MoveMouseAction } from './types';
+import { ResolveMouseHandler } from './types';
 
-export const moveMouse = (direction?: DIRECTION): MoveMouseAction => {
+export const moveMouse = (direction: DIRECTION): ResolveMouseHandler => {
     return async (coordinates: string[]): Promise<MOUSE_COMMANDS_NAME> => {
         const [translation] = coordinates;
 
