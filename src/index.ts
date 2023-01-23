@@ -23,8 +23,13 @@ wss.on('connection', (ws: WebSocket) => {
 
     process.on('SIGINT', () => {
         console.log('\n Goodbye ✋🏻');
+
+        wss.clients.forEach((client) => {
+            client.close();
+        });
     
         wss.close();
+        httpServer.close();
         process.exit(0);
     });
 
