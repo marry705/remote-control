@@ -10,10 +10,11 @@ export const drawCircle = async (coordinates: string[]): Promise<DRAWING_COMMAND
 	const { height: screenHeight, width: screenWidth } = await getScreenParam();
 	const { x: currentX, y: currentY } = await mouse.getPosition();
 
-	const isCircleCanBeDrawn = radius &&
-		(currentX + 2 * parseInt(radius)) < screenWidth &&
-		(currentY + 2 * parseInt(radius)) < screenHeight &&
-		(currentX - parseInt(radius)) > 0 && (currentY - parseInt(radius)) > 0;
+	const isCircleCanBeDrawn = radius
+		&& (currentX + 2 * parseInt(radius)) < screenWidth
+		&& (currentY + 2 * parseInt(radius)) < screenHeight
+		&& (currentX - parseInt(radius)) > 0
+		&& (currentY - parseInt(radius)) > 0;
 
 	if (!isCircleCanBeDrawn) {
 		throw new NoCorrectParamError();
